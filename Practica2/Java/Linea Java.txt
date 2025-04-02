@@ -1,0 +1,55 @@
+
+import java.awt.*;
+import java.awt.geom.Line2D;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Linea extends JPanel {
+    private
+        Punto p1;
+        Punto p2;
+
+    public Linea(Punto p1, Punto p2) {
+        this.p1 = p1;
+        this.p2 = p2;
+    }
+    
+    public String toString(){
+        String info;
+        info = p1.toString()+" " + p2.toString();
+        return info;
+    }
+    public void dibujaLinea(Graphics g){
+        float punto1[] = p1.coord_cartesianas();
+        float punto2[] = p2.coord_cartesianas();
+        //super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
+        g2.draw(new Line2D.Float(punto1[0],punto1[1],punto2[0],punto2[1]));
+    }
+    
+    public static void main(String[] args) {
+        
+        
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 400);
+        
+        Punto p1 = new Punto(100,100);
+        Punto p2 = new Punto(200,100);
+        Linea linea1 = new Linea(p1,p2);
+        
+        JPanel panel = new JPanel() {
+            
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                linea1.dibujaLinea(g);
+            }
+        };
+        
+        frame.add(panel);
+        frame.setVisible(true);
+        
+    }
+    
+    
+}

@@ -1,0 +1,46 @@
+import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Circulo {
+    private
+        Punto centro;
+        Float radio;
+
+    public Circulo(Punto centro, Float radio) {
+        this.centro = centro;
+        this.radio = radio;
+    }
+    
+    public String toString(){
+        String info;
+        info = centro.toString() +" "+ radio;
+        return info;
+    }
+    public void dibujaCirculo(Graphics g) {
+        float [] a = centro.coord_cartesianas();
+        Graphics2D g2 = (Graphics2D) g;
+        g2.draw(new Ellipse2D.Float(a[0], a[1], 2 * radio, 2 * radio));
+    }
+    
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 400);
+
+        Punto centro1 = new Punto(50, 50);
+        float radio = 150;
+        Circulo circulo1 = new Circulo(centro1, radio);
+
+        JPanel panel = new JPanel() {
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                circulo1.dibujaCirculo(g);
+            }
+        };
+
+        frame.add(panel);
+        frame.setVisible(true);
+    }
+}
