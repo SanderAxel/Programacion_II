@@ -1,0 +1,11 @@
+public class Aplicacion {
+    public static void main(String[] args) {
+        JuegoAdivinaNumero user1 = new JuegoAdivinaNumero();
+        JuegoAdivinaPar user2 = new JuegoAdivinaPar();
+        JuegoAdivinaImpar user3 = new JuegoAdivinaImpar();
+        
+        user1.Juega();
+        user2.Juega();
+        user3.Juega();
+    }
+}
